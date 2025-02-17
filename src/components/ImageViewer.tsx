@@ -41,7 +41,7 @@ const ImageViewer = ({
         alt={alt}
         width={width}
         height={height}
-        className={`${className} rounded-lg mb-4 cursor-pointer`}
+        className={`${className} rounded-lg mb-4 cursor-pointer hover:opacity-85`}
         onClick={() => openModal(src)}
       />
 
