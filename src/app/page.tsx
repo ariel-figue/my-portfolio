@@ -157,7 +157,7 @@ export default function Home() {
 
               .animate-wave {
                 display: inline-block;
-                animation: wave 7s ease-in-out infinite;
+                animation: wave 7s ease-in-out forwards;
                 transform-origin: 70% 70%;
               }
             `}</style>
