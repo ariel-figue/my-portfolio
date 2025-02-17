@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import ImageViewer from "@/components/ImageViewer";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -98,8 +99,8 @@ export default function Home() {
               experiences.
             </p>
             <p className="text-lg mt-2 animate-slide-up opacity-90">
-              Whether you&apos;re here to explore my work or discuss opportunities,
-              let&apos;s build something great together.
+              Whether you&apos;re here to explore my work or discuss
+              opportunities, let&apos;s build something great together.
             </p>
           </div>
         </div>
@@ -252,9 +253,9 @@ const ProjectsContent = () => (
     {/* AVOD/SVOD Subscription Flow for HBO Max */}
     <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
       {/* Project Image */}
-      <Image
-        src="/hbomax_avod_svod.png" // Update with actual image file path
-        alt="AVOD/SVOD Subscription Flow Screenshot"
+      <ImageViewer
+        src={"/hbomax_avod_svod.png"}
+        alt={"AVOD/SVOD Subscription Flow Screenshot"}
         width={350}
         height={350}
         className="rounded-lg mb-4"
