@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { X } from 'lucide-react';
 
@@ -23,15 +23,33 @@ const ImageViewer = ({
   const [isOpen, setIsOpen] = useState(isOpenProp);
   const [selectedImage, setSelectedImage] = useState(src);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   const openModal = (imageSrc: string | StaticImageData) => {
     setSelectedImage(imageSrc);
     setIsOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    document.body.style.overflow = '';
+  };
+
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.currentTarget === event.target) {
+      closeModal();
+    }
   };
 
   return (
@@ -48,7 +66,7 @@ const ImageViewer = ({
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={closeModal}
+          onClick={handleOverlayClick}
         >
           <div className="bg-white p-4 rounded-lg relative max-w-[75vw]">
             <img
