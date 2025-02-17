@@ -50,32 +50,64 @@ export default function Home() {
 
             {/* Navigation Links */}
             <nav
-              className={`absolute top-16 right-6 bg-black/80 text-white flex flex-col gap-4 p-4 rounded-lg 
-          lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:gap-6 
-          ${isMenuOpen ? "flex" : "hidden"}`}
+              className={`absolute top-16 right-6 bg-black/80 text-white flex flex-col gap-2 p-1 rounded-lg 
+  lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:gap-4 transition-all duration-500 ease-in-out
+  ${
+    isMenuOpen
+      ? "opacity-100 scale-100 translate-y-0"
+      : "opacity-0 scale-95 pointer-events-none"
+  }
+  lg:opacity-100 lg:translate-y-0 lg:scale-100 lg:pointer-events-auto`}
             >
-              {sections.map((section) => (
-                <a
-                  key={section.id}
-                  href={`#${section.id}`}
-                  className={`flex items-center hover:underline hover:underline-offset-4 ${
-                    activeSection === section.id
-                      ? "font-bold underline underline-offset-4"
-                      : ""
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById(section.id)
-                      ?.scrollIntoView({ behavior: "smooth" });
-                    setActiveSection(section.id);
-                    setIsMenuOpen(false); // Close mobile menu on click
-                  }}
-                >
-                  {section.title}
-                </a>
-              ))}
+              {sections.map((section, index) => {
+                const isActive = activeSection === section.id;
+
+                return (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className={`group flex items-center relative overflow-hidden rounded-full px-2 py-1 transition-all duration-300 ease-in-out opacity-0 translate-y-2 animate-navItem
+          ${
+            isActive
+              ? "font-bold bg-white/10 scale-105"
+              : "bg-transparent hover:bg-white/15"
+          }
+        `}
+                    style={{ animationDelay: `${index * 0.15}s` }} // Staggered animation delay
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById(section.id)
+                        ?.scrollIntoView({ behavior: "smooth" });
+                      setActiveSection(section.id);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {/* Text */}
+                    <span className="relative z-10">{section.title}</span>
+                  </a>
+                );
+              })}
             </nav>
+
+            <style jsx>{`
+              /* Navigation item animation */
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(10px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+
+              /* Apply animation to each nav item */
+              .animate-navItem {
+                animation: fadeInUp 0.6s ease-out forwards;
+              }
+            `}</style>
           </header>
 
           {/* Hero Text */}
