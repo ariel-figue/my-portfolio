@@ -124,8 +124,44 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl lg:text-6xl font-extrabold mb-4 animate-fade-in lg:tracking-wide">
-              Welcome 👋
+              Welcome <span className="inline-block animate-wave">👋🏼 </span>
             </h2>
+
+            <style jsx>{`
+              @keyframes wave {
+                0% {
+                  transform: rotate(0deg);
+                }
+                10% {
+                  transform: rotate(14deg);
+                }
+                20% {
+                  transform: rotate(-8deg);
+                }
+                30% {
+                  transform: rotate(14deg);
+                }
+                40% {
+                  transform: rotate(-4deg);
+                }
+                50% {
+                  transform: rotate(10deg);
+                }
+                60% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(0deg);
+                }
+              }
+
+              .animate-wave {
+                display: inline-block;
+                animation: wave 7s ease-in-out infinite;
+                transform-origin: 70% 70%;
+              }
+            `}</style>
+
             <p className="text-xl font-light animate-slide-up opacity-90">
               I&apos;m a Senior Front-End Engineer crafting seamless digital
               experiences.
