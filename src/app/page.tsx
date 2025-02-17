@@ -385,7 +385,7 @@ const ContactContent = () => (
     <div className="flex justify-center sm:justify-start">
       <a
         href="mailto:contact@ariel-figueroa.com?subject=Saw%20Your%20Website%20-%20Let's%20Chat%21"
-        className="w-full sm:w-[200px] bg-gradient-to-r from-[#0c3d5c] to-[#1e5b7a] hover:from-[#13506f] hover:to-[#1c5a76] text-white py-2 px-4 rounded-md font-bold text-center"
+        className="w-full sm:w-[280px] bg-gradient-to-r from-[#0c3d5c] to-[#1e5b7a] hover:from-[#13506f] hover:to-[#1c5a76] text-white py-2 px-4 rounded-md font-bold text-center"
       >
         Email me
       </a>
