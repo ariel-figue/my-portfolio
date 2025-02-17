@@ -351,7 +351,7 @@ const ContactContent = () => (
     </div>
     <div className="flex justify-center sm:justify-start">
       <a
-        href="mailto:af.arielfigueroa@gmail.com?subject=Let's%20chat!"
+        href="mailto:contact@ariel-figueroa.com?subject=Saw%20Your%20Website%20-%20Let's%20Chat%21"
         className="w-max bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded-md font-bold"
       >
         Email me
