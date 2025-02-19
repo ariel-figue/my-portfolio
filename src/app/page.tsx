@@ -54,7 +54,7 @@ export default function Home() {
   lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:gap-4 transition-all duration-500 ease-in-out
   ${
     isMenuOpen
-      ? "opacity-100 scale-100 translate-y-0"
+      ? "opacity-100 scale-100 translate-y-0 animate-navItems"
       : "opacity-0 scale-95 pointer-events-none"
   }
   lg:opacity-100 lg:translate-y-0 lg:scale-100 lg:pointer-events-auto`}
@@ -66,7 +66,7 @@ export default function Home() {
                   <a
                     key={section.id}
                     href={`#${section.id}`}
-                    className={`group flex items-center relative overflow-hidden rounded-full px-2 py-1 transition-all duration-300 ease-in-out opacity-0 translate-y-2 animate-navItem
+                    className={`group flex items-center relative overflow-hidden rounded-full px-2 py-1 transition-all duration-300 ease-in-out
           ${
             isActive
               ? "font-bold bg-white/10 scale-105"
@@ -103,9 +103,20 @@ export default function Home() {
                 }
               }
 
-              /* Apply animation to each nav item */
-              .animate-navItem {
-                animation: fadeInUp 0.6s ease-out forwards;
+              /* Apply animation to each nav item when mobile menu opens */
+              .animate-navItems a {
+                opacity: 0;
+                transform: translateY(10px);
+                animation: fadeInUp 0.50s ease-out forwards;
+              }
+
+              /* Apply animation to each nav item when desktop menu is rendered */
+              @media (min-width: 1024px) {
+                nav a {
+                  opacity: 0;
+                  transform: translateY(10px);
+                  animation: fadeInUp 0.25s ease-out forwards;
+                }
               }
             `}</style>
           </header>
@@ -281,7 +292,7 @@ const ExperienceContent = () => {
 const ProjectsContent = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {/* Lucky Lotto App */}
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
       {/* App Image */}
       <Image
         src="/lucky_lotto_logo.jpg" // Update with actual image file path
@@ -319,7 +330,7 @@ const ProjectsContent = () => (
     </div>
 
     {/* AVOD/SVOD Subscription Flow for HBO Max */}
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
       {/* Project Image */}
       <ImageViewer
         src={"/hbomax_avod_svod.png"}
@@ -352,7 +363,7 @@ const ProjectsContent = () => (
     </div>
 
     {/* AWS Rekognition POC */}
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center">
+    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
       {/* Project Image */}
       <Image
         src="/aws_rekognition_logo.png" // Update with actual image file path
