@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Analytics } from "@vercel/analytics/react"
 import { ContactContent } from "@/components/Contact";
 import { ExperienceContent } from "@/components/Experience";
 import { HomeContent } from "@/components/Home";
@@ -42,6 +43,7 @@ export default function Home() {
         ))}
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }
