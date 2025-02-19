@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ContactContent } from "@/components/Contact";
 import { ExperienceContent } from "@/components/Experience";
 import { HomeContent } from "@/components/Home";
@@ -44,6 +45,7 @@ export default function Home() {
       </main>
       <Footer />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
