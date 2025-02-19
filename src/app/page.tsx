@@ -115,7 +115,7 @@ export default function Home() {
                 nav a {
                   opacity: 0;
                   transform: translateY(10px);
-                  animation: fadeInUp 0.25s ease-out forwards;
+                  animation: fadeInUp 0.33s ease-out forwards;
                 }
               }
             `}</style>
