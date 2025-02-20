@@ -39,12 +39,20 @@ export const metadataGlobal: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://ariel-figueroa.com/my_picture.jpg",
+        url: "https://ariel-figueroa.com/social-preview.jpg",
         width: 1200,
         height: 630,
         alt: "Ariel Figueroa - Senior Front-End Engineer",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@arielxfigueroa", // Replace with your Twitter/X handle
+    title: "Ariel Figueroa | Senior Front-End Engineer & React Developer",
+    description:
+      "Senior Front-End Engineer specializing in React, TypeScript, and Next.js. Explore my projects and blog for insights on scalable web development.",
+    images: ["https://ariel-figueroa.com/social-preview.jpg"],
   },
 };
 
@@ -83,11 +91,19 @@ export const metadataFlorida: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://ariel-figueroa.com/my_picture.jpg",
+        url: "https://ariel-figueroa.com/social-preview.jpg",
         width: 1200,
         height: 630,
         alt: "Ariel Figueroa - Senior Front-End Engineer in Florida",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@arielxfigueroa", // Replace with your Twitter/X handle
+    title: "Ariel Figueroa | Senior Front-End Engineer & React Developer | Florida",
+    description:
+      "Senior Front-End Engineer based in Florida, specializing in React, TypeScript, and Next.js. Explore my projects and blog for insights on scalable web development.",
+    images: ["https://ariel-figueroa.com/social-preview.jpg"],
   },
 };
