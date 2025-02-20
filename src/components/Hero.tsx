@@ -15,7 +15,7 @@ export const Hero = () => {
 
         {/* Profile Image with Fade-in Effect */}
         <Image
-          src="/my_picture.jpg"
+          src="/my-picture.jpg"
           alt="Ariel Figueroa"
           width={2000}
           height={2000}

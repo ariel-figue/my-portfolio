@@ -14,7 +14,7 @@ export const ContactContent = () => (
         className="text-blue-500 hover:text-blue-700 font-bold mb-4  w-max"
       >
         <Image
-          src="/linkedin_logo.png"
+          src="/linkedin.png"
           alt="LinkedIn Logo"
           width={45}
           height={45}
@@ -28,7 +28,7 @@ export const ContactContent = () => (
         className="text-blue-500 hover:text-blue-700 font-bold mb-4 w-max"
       >
         <Image
-          src="/git_logo.png"
+          src="/git-logo.png"
           alt="GitHub Logo"
           width={50}
           height={50}

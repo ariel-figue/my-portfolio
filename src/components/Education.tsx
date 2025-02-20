@@ -7,13 +7,13 @@ export const EducationContent = () => {
   const education = [
     {
       school: "Florida International University",
-      logo: "/fiu_logo.jpg",
+      logo: "/fiu-logo.jpg",
       tenure: "2014 - 2018",
       major: "Bachelor of Science in Information Technology",
     },
     {
       school: "Miami Dade College",
-      logo: "/mdc_logo.png",
+      logo: "/mdc-logo.png",
       tenure: "2014 - 2016",
       major: "Associate of Arts in Computer Science",
     },

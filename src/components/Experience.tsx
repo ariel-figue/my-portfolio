@@ -7,7 +7,7 @@ export const ExperienceContent = () => {
     const experiences = [
       {
         company: "Warner Bros. Discovery",
-        logo: "/wbd_logo.jpg",
+        logo: "/wbd.jpg",
         tenure: "Apr 2022 - Dec 2024",
         position: "Software Engineer III",
         description: [
@@ -18,7 +18,7 @@ export const ExperienceContent = () => {
       },
       {
         company: "WarnerMedia",
-        logo: "/wm_logo.jpg",
+        logo: "/wm.jpg",
         tenure: "Jun 2021 - Apr 2022",
         position: "Software Engineer II",
         description: [
@@ -29,7 +29,7 @@ export const ExperienceContent = () => {
       },
       {
         company: "HBO Latin America",
-        logo: "/hbola_logo.jpg",
+        logo: "/hbola.jpg",
         tenure: "Jun 2019 - Jun 2021",
         position: "Software Engineer",
         description: [
