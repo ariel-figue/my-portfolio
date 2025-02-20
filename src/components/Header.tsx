@@ -7,6 +7,7 @@ export const Header = () => {
   const sections = [
     { id: "home", title: "About Me" },
     { id: "experience", title: "Experience" },
+      { id: "education", title: "Education" },
     { id: "projects", title: "Projects" },
     { id: "contact", title: "Contact" },
   ];

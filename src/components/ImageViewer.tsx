@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect } from 'react';
-import Image, { StaticImageData } from 'next/image';
-import { X } from 'lucide-react';
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import Image, { StaticImageData } from "next/image";
+import { X } from "lucide-react";
 
 interface ImageViewerProps {
   src: string | StaticImageData;
@@ -9,7 +10,8 @@ interface ImageViewerProps {
   width: number;
   height: number;
   className?: string;
-  isOpen?: boolean;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const ImageViewer = ({
@@ -18,89 +20,64 @@ const ImageViewer = ({
   width,
   height,
   className = "",
-  isOpen: isOpenProp = false,
+  isOpen,
+  onClose,
 }: ImageViewerProps) => {
-  const [isOpen, setIsOpen] = useState(isOpenProp);
-  const [selectedImage, setSelectedImage] = useState(src);
-  const [isVisible, setIsVisible] = useState(false); // Controls fade-in animation
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
-        closeModal();
-      }
+      if (event.key === "Escape") onClose();
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => setIsVisible(true), 10); // Small delay for smooth fade-in
-    } else {
-      document.body.style.overflow = 'auto';
-      setIsVisible(false);
-    }
-  }, [isOpen]);
+  if (!isOpen) return null;
 
-  const openModal = (imageSrc: string | StaticImageData) => {
-    setSelectedImage(imageSrc);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsVisible(false);
-    setTimeout(() => setIsOpen(false), 300); // Delay modal closing for smooth fade-out
-  };
-
-  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.currentTarget === event.target) {
-      closeModal();
-    }
-  };
-
-  return (
-    <div style={{ overflow: 'hidden' }}>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={`${className} rounded-lg mb-4 cursor-pointer hover:opacity-85`}
-        onClick={() => openModal(src)}
-      />
-
-      {isOpen && (
-        <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 
-            transition-opacity duration-500 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"}`}
-          onClick={handleOverlayClick}
+  return createPortal(
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[1000] transition-opacity duration-300 ease-in-out"
+      onClick={onClose} // Close modal when clicking on overlay
+    >
+      <div
+        className="relative rounded-lg shadow-lg flex justify-center items-center"
+        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking inside
+      >
+        {/* Close Button */}
+        <button
+          className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:bg-gray-200"
+          onClick={onClose}
         >
-          <div
-            className={`bg-white p-4 rounded-lg relative max-w-[75vw] transition-all duration-300 ease-in-out 
-            ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
-          >
-            <img
-              src={typeof selectedImage === 'string' ? selectedImage : selectedImage.src}
-              alt="Enlarged view"
-              className="max-w-full max-h-full"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button
-              className="absolute top-0 right-0 p-2 bg-white rounded-full shadow-md"
-              onClick={closeModal}
-            >
-              <X size={24} />
-            </button>
-          </div>
+          <X size={24} />
+        </button>
+
+        {/* Display Image with Proper Scaling */}
+        <div className="flex justify-center items-center">
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className={`rounded-lg object-contain ${className}`}
+            style={{
+              width: "auto",
+              height: "auto",
+            }}
+            priority
+          />
         </div>
-      )}
-    </div>
+      </div>
+    </div>,
+    document.body // Render modal in the root of the DOM
   );
 };
 

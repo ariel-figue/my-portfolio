@@ -1,111 +1,201 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import ImageViewer from "./ImageViewer";
 
-// Projects Section
-export const ProjectsContent = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {/* Lucky Lotto App */}
-    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
-      {/* App Image */}
-      <Image
-        src="/lucky_lotto_logo.jpg" // Update with actual image file path
-        alt="Lucky Lotto App Screenshot"
-        width={200}
-        height={200}
-        className="rounded-lg mb-4"
-      />
+interface StoreImage {
+  image: string;
+  link?: string;
+  width?: number;
+  height?: number;
+}
 
-      {/* App Name */}
-      <h3 className="text-lg font-bold">Lucky Lotto</h3>
+interface Project {
+  title: string;
+  image: string;
+  description: React.ReactNode;
+  link?: string;
+  storeImage?: string | StoreImage;
+  useImageViewer?: boolean;
+  width?: number;
+  height?: number;
+}
 
-      {/* Play Store Link */}
-      <a
-        href="https://play.google.com/store/apps/details?id=com.arielfigue.luckylotto&hl=en_US&pli=1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-4 flex items-center gap-2 text-blue-600 hover:underline hover:pointer-cursor"
-      >
-        <Image
-          src="/google_playstore_logo.png" // Update with actual Play Store icon path
-          alt="Google Play Store"
-          width={175}
-          height={175}
-        />
-      </a>
-
-      <p className="text-justify mt-6">
+const projects: Project[] = [
+  {
+    title: "Lucky Lotto",
+    image: "/lucky_lotto_logo.jpg",
+    description: (
+      <>
         <b>Lucky Lotto</b> is a React Native app I built for generating Florida
         Lottery numbers. As a favor to my dad, a lottery enthusiast, I created
         this app to help him generate numbers for Florida Lottery games. The app
-        is available on the Google Play Store and is built using React Native,
-        Expo, and TypeScript.
-      </p>
-    </div>
+        is available on the <b>Google Play Store</b> and is built using{" "}
+        <b>React Native, Expo, and TypeScript</b>.
+      </>
+    ),
+    link: "https://play.google.com/store/apps/details?id=com.arielfigue.luckylotto&hl=en_US&pli=1",
+    storeImage: "/google_playstore_logo.png",
+    width: 135,
+    height: 135,
+  },
+  {
+    title: "Fishly",
+    image: "/fishly_logo.png",
+    description: (
+      <>
+        <b>Fishly</b> is a fishing companion app providing{" "}
+        <b>
+          real-time fishing insights, catch logging, and location-based
+          recommendations.
+        </b>{" "}
+        It features an interactive <b>map</b> for pinning fishing spots,
+        tracking catches, and analyzing trends over time. Built with{" "}
+        <b>Next.js, React, Tailwind CSS, and Neon DB</b>, it leverages{" "}
+        <b>Next.js API routes</b> for seamless data handling.
+        <br />
+        <br />I started this project in <b>late February 2025</b>, and it is
+        still under early development, with more features being added regularly.
+      </>
+    ),
+    link: "https://fishly-af.vercel.app",
+    storeImage: {
+      link: "https://github.com/ariel-figue/fishly",
+      image: "/git_logo.png",
+      width: 100,
+      height: 100,
+    },
+    width: 175,
+    height: 175,
+  },
+  {
+    title: "HBO Max AVOD/SVOD",
+    image: "/hbomax_avod_svod.png",
+    description: (
+      <>
+        I contributed to the development and implementation of{" "}
+        <b>AVOD (Ad-Supported) and SVOD (Ad-Free)</b> subscription tiers for{" "}
+        <b>HBO Max</b>. This involved integrating <b>React components</b> into
+        the subscription checkout flow, optimizing <b>API requests</b> for
+        validation, and ensuring localized support for <b>LATAM & EMEA</b>{" "}
+        regions. I worked closely with <b>UI/UX teams</b> to enhance the{" "}
+        customer experience and improve performance. This feature expanded HBO
+        Max&apos;s global reach and increased flexibility for users across different
+        markets.
+      </>
+    ),
+    useImageViewer: true,
+    width: 225,
+    height: 225,
+  },
+  {
+    title: "AWS Rekognition POC",
+    image: "/aws_rekognition_logo.png",
+    description: (
+      <>
+        I developed a <b>Face Recognition System</b> using <b>React</b> and{" "}
+        <b>AWS Rekognition</b> for HBO Max&apos;s Content and Promo team. The
+        system integrated with <b>AWS Lambda, API Gateway, S3, and DynamoDB</b>{" "}
+        to store facial vectors and collections.
+        <br />
+        This POC demonstrated the feasibility of{" "}
+        <b>automated facial recognition</b> for content categorization and{" "}
+        metadata enhancement.
+      </>
+    ),
+    width: 100,
+    height: 100,
+  },
+];
 
-    {/* AVOD/SVOD Subscription Flow for HBO Max */}
-    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
-      {/* Project Image */}
-      <ImageViewer
-        src={"/hbomax_avod_svod.png"}
-        alt={"AVOD/SVOD Subscription Flow Screenshot"}
-        width={350}
-        height={350}
-        className="rounded-lg mb-4"
-      />
+const ProjectCard = ({
+  title,
+  image,
+  description,
+  link,
+  storeImage,
+  useImageViewer,
+  width = 150, // Default width
+  height = 150, // Default height
+  setSelectedImage,
+}: Project & {
+  setSelectedImage: (image: { src: string; width: number; height: number } | null) => void;
+}) => {
+  return (
+    <div className="rounded-2xl shadow-md p-6 border border-gray-200 flex flex-col items-center text-center bg-white transition-all transform hover:scale-105 max-w-[350px] h-[500px]">
+      {/* Image */}
+      {useImageViewer ? (
+        <Image
+          src={image}
+          alt={`${title} Screenshot`}
+          width={width}
+          height={height}
+          className="rounded-lg mb-4 cursor-pointer"
+          onClick={() => setSelectedImage({ src: image, width, height })}
+        />
+      ) : (
+        <Image
+          src={image}
+          alt={`${title} Screenshot`}
+          width={width}
+          height={height}
+          className={`rounded-lg mb-4 ${link ? "cursor-pointer hover:opacity-80" : ""}`}
+          onClick={link ? () => window.open(link, "_blank") : undefined}
+        />
+      )}
 
-      {/* Project Name */}
-      <h3 className="text-lg font-bold">HBO Max AVOD/SVOD Subscription Flow</h3>
+      {/* Title */}
+      <h3 className="text-xl font-semibold text-[#2c3e50]">{title}</h3>
 
-      {/* Project Description */}
-      <div className="text-justify mt-4">
-        <p>
-          I contributed to the development and implementation of AVOD
-          (Ad-Supported) and SVOD (Ad-Free) subscription tiers for{" "}
-          <b>HBO Max</b>. This involved integrating React components into the
-          subscription checkout flow, optimizing API requests for subscription
-          validation, and ensuring localized text support for LATAM & EMEA
-          regions.
-        </p>
-        <p>
-          I worked closely with UI/UX teams to enhance the customer experience
-          and improve the performance of the React-based client application.
-          This feature expanded HBO Max&apos;s global reach and increased
-          subscription flexibility for users across different markets.
-        </p>
+      {/* Description Area */}
+      <div className="description-area flex-1 w-full mt-4 text-gray-700 px-1 text-sm text-justify h-[80px] scrollable">
+        {description}
       </div>
+
+      {/* Store Link (if applicable) */}
+      {link && storeImage && (
+        <a
+          href={typeof storeImage === "string" ? link : storeImage.link}
+          className={`${link ? "cursor-pointer hover:opacity-80" : ""}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={typeof storeImage === "string" ? storeImage : storeImage.image}
+            alt="Store Link"
+            width={typeof storeImage === "string" ? 150 : storeImage.width ?? 150}
+            height={typeof storeImage === "string" ? 150 : storeImage.height ?? 150}
+          />
+        </a>
+      )}
     </div>
+  );
+};
 
-    {/* AWS Rekognition POC */}
-    <div className="rounded-lg shadow-xl p-6 border border-gray-300 flex flex-col items-center text-center">
-      {/* Project Image */}
-      <Image
-        src="/aws_rekognition_logo.png" // Update with actual image file path
-        alt="AWS Rekognition POC Screenshot"
-        width={160}
-        height={160}
-        className="rounded-lg mb-4"
-      />
+export const ProjectsContent = () => {
+  const [selectedImage, setSelectedImage] = useState<{ src: string; width: number; height: number } | null>(null);
 
-      {/* Project Name */}
-      <h3 className="text-lg font-bold">AWS Rekognition POC</h3>
-
-      {/* Project Description */}
-      <div className="text-justify mt-4">
-        <p>
-          As part of a proof-of-concept for HBO Max&apos;s Content and Promo
-          team, I developed a Face Recognition System leveraging AWS
-          Rekognition. The system utilized React JS for the frontend and
-          integrated with AWS Lambda, API Gateway, S3, and DynamoDB for storing
-          facial vectors and collections.
-        </p>
-        <p className="mt-4">
-          This POC demonstrated the feasibility of automated facial recognition
-          for content categorization and metadata enhancement, providing
-          streamlined tagging and retrieval of media assets.
-        </p>
+  return (
+    <div className="relative w-full py-6">
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
+        {projects.map((project, index) => (
+          <ProjectCard key={index} {...project} setSelectedImage={setSelectedImage} />
+        ))}
       </div>
+
+      {/* Image Viewer Modal */}
+      {selectedImage && (
+        <ImageViewer
+          src={selectedImage.src}
+          alt="Expanded Image"
+          isOpen={!!selectedImage}
+          onClose={() => setSelectedImage(null)} 
+          width={1200}
+          height={1200}
+        />
+      )}
     </div>
-  </div>
-);
+  );
+};
