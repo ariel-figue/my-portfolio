@@ -7,20 +7,20 @@ import { ContactContent } from "@/components/Contact";
 import { ExperienceContent } from "@/components/Experience";
 import { ProjectsContent } from "@/components/Projects";
 import { EducationContent } from "@/components/Education";
-import { HomeContent } from "@/components/Home";
+import { AboutMeContent } from "@/components/AboutMe";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 
 const sections = [
-  { id: "home", title: "About Me", content: <HomeContent /> },
+  { id: "home", title: "About Me", content: <AboutMeContent /> },
   { id: "experience", title: "Experience", content: <ExperienceContent /> },
   { id: "projects", title: "Projects", content: <ProjectsContent /> },
   { id: "education", title: "Education", content: <EducationContent /> },
   { id: "contact", title: "Contact", content: <ContactContent /> },
 ];
 
-export default function Home() {
+export default function AboutMe() {
   return (
     <div className="scroll-smooth font-[family-name:var(--font-geist-sans)] min-h-screen">
       <div className="relative top-0 left-0 w-full h-screen">
@@ -37,9 +37,8 @@ export default function Home() {
         </div>
       </div>
       <main className="container mx-auto py-12 px-6">
-        {sections.map(({ id, title, content }) => (
+        {sections.map(({ id, content }) => (
           <section key={id} id={id} className="mb-12">
-            <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-6">{title}</h2>
             {content}
           </section>
         ))}

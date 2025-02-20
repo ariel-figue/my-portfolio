@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ImageViewer from "./ImageViewer";
+import FadeInSection from "./FadeInSection";
 
 interface StoreImage {
   image: string;
@@ -81,8 +82,8 @@ const projects: Project[] = [
         validation, and ensuring localized support for <b>LATAM & EMEA</b>{" "}
         regions. I worked closely with <b>UI/UX teams</b> to enhance the{" "}
         customer experience and improve performance. This feature expanded HBO
-        Max&apos;s global reach and increased flexibility for users across different
-        markets.
+        Max&apos;s global reach and increased flexibility for users across
+        different markets.
       </>
     ),
     useImageViewer: true,
@@ -121,7 +122,9 @@ const ProjectCard = ({
   height = 150, // Default height
   setSelectedImage,
 }: Project & {
-  setSelectedImage: (image: { src: string; width: number; height: number } | null) => void;
+  setSelectedImage: (
+    image: { src: string; width: number; height: number } | null
+  ) => void;
 }) => {
   return (
     <div className="rounded-2xl shadow-md p-6 border border-gray-200 flex flex-col items-center text-center bg-white transition-all transform hover:scale-105 max-w-[350px] h-[500px]">
@@ -141,7 +144,9 @@ const ProjectCard = ({
           alt={`${title} Screenshot`}
           width={width}
           height={height}
-          className={`rounded-lg mb-4 ${link ? "cursor-pointer hover:opacity-80" : ""}`}
+          className={`rounded-lg mb-4 ${
+            link ? "cursor-pointer hover:opacity-80" : ""
+          }`}
           onClick={link ? () => window.open(link, "-blank") : undefined}
         />
       )}
@@ -165,8 +170,12 @@ const ProjectCard = ({
           <Image
             src={typeof storeImage === "string" ? storeImage : storeImage.image}
             alt="Store Link"
-            width={typeof storeImage === "string" ? 150 : storeImage.width ?? 150}
-            height={typeof storeImage === "string" ? 150 : storeImage.height ?? 150}
+            width={
+              typeof storeImage === "string" ? 150 : storeImage.width ?? 150
+            }
+            height={
+              typeof storeImage === "string" ? 150 : storeImage.height ?? 150
+            }
           />
         </a>
       )}
@@ -175,28 +184,41 @@ const ProjectCard = ({
 };
 
 export const ProjectsContent = () => {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; width: number; height: number } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    width: number;
+    height: number;
+  } | null>(null);
 
   return (
-    <div className="relative w-full py-6">
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} setSelectedImage={setSelectedImage} />
-        ))}
-      </div>
+    <FadeInSection>
+      <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-6">
+        Projects
+      </h2>
+      <div className="relative w-full py-6">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              {...project}
+              setSelectedImage={setSelectedImage}
+            />
+          ))}
+        </div>
 
-      {/* Image Viewer Modal */}
-      {selectedImage && (
-        <ImageViewer
-          src={selectedImage.src}
-          alt="Expanded Image"
-          isOpen={!!selectedImage}
-          onClose={() => setSelectedImage(null)} 
-          width={1200}
-          height={1200}
-        />
-      )}
-    </div>
+        {/* Image Viewer Modal */}
+        {selectedImage && (
+          <ImageViewer
+            src={selectedImage.src}
+            alt="Expanded Image"
+            isOpen={!!selectedImage}
+            onClose={() => setSelectedImage(null)}
+            width={1200}
+            height={1200}
+          />
+        )}
+      </div>
+    </FadeInSection>
   );
 };

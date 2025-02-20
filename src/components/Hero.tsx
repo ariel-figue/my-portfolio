@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import FadeInSection from "./FadeInSection";
 
 export const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,54 +26,55 @@ export const Hero = () => {
           onLoad={() => setIsLoaded(true)} // Hide loader & trigger fade-in
         />
       </div>
+      <FadeInSection>
+        <h2 className="text-4xl lg:text-6xl font-extrabold mb-4 animate-fade-in lg:tracking-wide">
+          Welcome <span className="inline-block animate-wave">👋🏼</span>
+        </h2>
 
-      <h2 className="text-4xl lg:text-6xl font-extrabold mb-4 animate-fade-in lg:tracking-wide">
-        Welcome <span className="inline-block animate-wave">👋🏼</span>
-      </h2>
+        <style jsx>{`
+          @keyframes wave {
+            0% {
+              transform: rotate(0deg);
+            }
+            10% {
+              transform: rotate(14deg);
+            }
+            20% {
+              transform: rotate(-8deg);
+            }
+            30% {
+              transform: rotate(14deg);
+            }
+            40% {
+              transform: rotate(-4deg);
+            }
+            50% {
+              transform: rotate(10deg);
+            }
+            60% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(0deg);
+            }
+          }
 
-      <style jsx>{`
-        @keyframes wave {
-          0% {
-            transform: rotate(0deg);
+          .animate-wave {
+            display: inline-block;
+            animation: wave 7s ease-in-out forwards;
+            transform-origin: 70% 70%;
           }
-          10% {
-            transform: rotate(14deg);
-          }
-          20% {
-            transform: rotate(-8deg);
-          }
-          30% {
-            transform: rotate(14deg);
-          }
-          40% {
-            transform: rotate(-4deg);
-          }
-          50% {
-            transform: rotate(10deg);
-          }
-          60% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(0deg);
-          }
-        }
+        `}</style>
 
-        .animate-wave {
-          display: inline-block;
-          animation: wave 7s ease-in-out forwards;
-          transform-origin: 70% 70%;
-        }
-      `}</style>
-
-      <p className="text-xl font-light animate-slide-up opacity-90">
-        I&apos;m a Senior Front-End Engineer crafting seamless digital
-        experiences.
-      </p>
-      <p className="text-lg mt-2 animate-slide-up opacity-90">
-        Whether you&apos;re here to explore my work or discuss opportunities,
-        let&apos;s build something great together.
-      </p>
+        <p className="text-xl font-light animate-slide-up opacity-90">
+          I&apos;m a Senior Front-End Engineer crafting seamless digital
+          experiences.
+        </p>
+        <p className="text-lg mt-2 animate-slide-up opacity-90">
+          Whether you&apos;re here to explore my work or discuss opportunities,
+          let&apos;s build something great together.
+        </p>
+      </FadeInSection>
     </div>
   );
 };

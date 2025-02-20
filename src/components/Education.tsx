@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import FadeInSection from "./FadeInSection";
 
 // Education Section
 export const EducationContent = () => {
@@ -24,26 +25,31 @@ export const EducationContent = () => {
   ];
 
   return (
-    <div>
-      {education.map((edu, index) => (
-        <div key={index} className="mt-8">
-          <div className="flex items-center gap-4">
-            <Image
-              src={edu.logo}
-              alt={`${edu.school} Logo`}
-              width={edu.width}
-              height={edu.height}
-              className="object-contain mr-4"
-              priority={false}
-            />
-            <div>
-              <h3 className="text-lg font-bold">{edu.school}</h3>
-              <p className="italic">{edu.tenure}</p>
-              <p className="font-bold">{edu.major}</p>
+    <FadeInSection>
+      <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-6">
+        Education
+      </h2>
+      <div>
+        {education.map((edu, index) => (
+          <div key={index} className="mt-8">
+            <div className="flex items-center gap-4">
+              <Image
+                src={edu.logo}
+                alt={`${edu.school} Logo`}
+                width={edu.width}
+                height={edu.height}
+                className="object-contain mr-4"
+                priority={false}
+              />
+              <div>
+                <h3 className="text-lg font-bold">{edu.school}</h3>
+                <p className="italic">{edu.tenure}</p>
+                <p className="font-bold">{edu.major}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </FadeInSection>
   );
 };
