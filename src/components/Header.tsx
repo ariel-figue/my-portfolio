@@ -7,7 +7,7 @@ export const Header = () => {
   const sections = [
     { id: "home", title: "About Me" },
     { id: "experience", title: "Experience" },
-      { id: "education", title: "Education" },
+    { id: "education", title: "Education" },
     { id: "projects", title: "Projects" },
     { id: "contact", title: "Contact" },
   ];
@@ -28,14 +28,14 @@ export const Header = () => {
 
       {/* Navigation Links */}
       <nav
-        className={`absolute top-16 right-6 bg-black/80 text-white flex flex-col gap-2 p-1 rounded-lg 
-lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:gap-4 transition-all duration-500 ease-in-out
-${
-  isMenuOpen
-    ? "opacity-100 scale-100 translate-y-0 animate-navItems"
-    : "opacity-0 scale-95 pointer-events-none"
-}
-lg:opacity-100 lg:translate-y-0 lg:scale-100 lg:pointer-events-auto`}
+        className={`absolute top-16 right-6 bg-black/80 text-white flex flex-col gap-1 p-1 min-w-[125px] rounded-lg 
+          lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:gap-4 transition-all duration-500 ease-in-out
+          ${
+            isMenuOpen
+              ? "opacity-100 scale-100 translate-y-0 animate-navItems"
+              : "opacity-0 scale-95 pointer-events-none"
+          }
+          lg:opacity-100 lg:translate-y-0 lg:scale-100 lg:pointer-events-auto`}
       >
         {sections.map((section, index) => {
           const isActive = activeSection === section.id;

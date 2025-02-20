@@ -27,10 +27,9 @@ export default function Home() {
         <Image
           src="/my-picture.jpg"
           alt="Ariel Figueroa Picture"
-          layout="fill"
-          objectFit="cover"
           className="w-full h-full object-cover"
           priority
+          fill
         />
         <div className="absolute inset-0 bg-black/50 lg:bg-gradient-to-r lg:from-[#0a2742] lg:via-[#113b5a] lg:to-[#1b4d6b] z-10">
           <Header />

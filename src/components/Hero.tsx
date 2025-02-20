@@ -22,7 +22,7 @@ export const Hero = () => {
           className={`w-full h-full rounded-full border-4 border-white shadow-lg object-cover transition-opacity duration-1000 ease-in-out ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
-          onLoadingComplete={() => setIsLoaded(true)} // Hide loader & trigger fade-in
+          onLoad={() => setIsLoaded(true)} // Hide loader & trigger fade-in
         />
       </div>
 

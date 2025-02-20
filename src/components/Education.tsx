@@ -10,12 +10,16 @@ export const EducationContent = () => {
       logo: "/fiu-logo.jpg",
       tenure: "2014 - 2018",
       major: "Bachelor of Science in Information Technology",
+      width: 80,
+      height: 80,
     },
     {
       school: "Miami Dade College",
       logo: "/mdc-logo.png",
       tenure: "2014 - 2016",
       major: "Associate of Arts in Computer Science",
+      width: 80,
+      height: 80,
     },
   ];
 
@@ -27,9 +31,10 @@ export const EducationContent = () => {
             <Image
               src={edu.logo}
               alt={`${edu.school} Logo`}
-              width={80}
-              height={80}
+              width={edu.width}
+              height={edu.height}
               className="object-contain mr-4"
+              priority={false}
             />
             <div>
               <h3 className="text-lg font-bold">{edu.school}</h3>

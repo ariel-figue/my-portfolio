@@ -99,6 +99,7 @@ const projects: Project[] = [
         system integrated with <b>AWS Lambda, API Gateway, S3, and DynamoDB</b>{" "}
         to store facial vectors and collections.
         <br />
+        <br />
         This POC demonstrated the feasibility of{" "}
         <b>automated facial recognition</b> for content categorization and{" "}
         metadata enhancement.
