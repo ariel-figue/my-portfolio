@@ -36,7 +36,7 @@ const projects: Project[] = [
       </>
     ),
     link: "https://play.google.com/store/apps/details?id=com.arielfigue.luckylotto&hl=en-US&pli=1",
-    storeImage: "/google-playstore-logo.png",
+    storeImage: "/google-playstore.png",
     width: 135,
     height: 135,
   },
