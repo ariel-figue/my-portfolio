@@ -5,8 +5,9 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ContactContent } from "@/components/Contact";
 import { ExperienceContent } from "@/components/Experience";
-import { HomeContent } from "@/components/Home";
 import { ProjectsContent } from "@/components/Projects";
+import { EducationContent } from "@/components/Education";
+import { HomeContent } from "@/components/Home";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -15,6 +16,7 @@ const sections = [
   { id: "home", title: "About Me", content: <HomeContent /> },
   { id: "experience", title: "Experience", content: <ExperienceContent /> },
   { id: "projects", title: "Projects", content: <ProjectsContent /> },
+  { id: "education", title: "Education", content: <EducationContent /> },
   { id: "contact", title: "Contact", content: <ContactContent /> },
 ];
 
