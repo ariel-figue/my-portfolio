@@ -192,7 +192,7 @@ export const ProjectsContent = () => {
 
   return (
     <FadeInSection>
-      <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-6">
+      <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-2">
         Projects
       </h2>
       <div className="relative w-full py-6">
