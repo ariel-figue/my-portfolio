@@ -6,6 +6,9 @@ import FadeInSection from "./FadeInSection";
 // Contact Section
 export const ContactContent = () => (
   <FadeInSection>
+    <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-6">
+      Contact
+    </h2>
     <div className="flex flex-col items-left">
       <p className="mb-4">Want to connect or discuss a project?</p>
       <div className="flex-row mb-4">
