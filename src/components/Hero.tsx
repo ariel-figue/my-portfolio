@@ -66,7 +66,7 @@ export const Hero = () => {
       `}</style>
 
       <p className="text-xl font-light animate-slide-up opacity-90">
-        I&apos;m a Senior Frontend Engineer crafting seamless digital
+        I&apos;m a Senior Front-End Engineer crafting seamless digital
         experiences.
       </p>
       <p className="text-lg mt-2 animate-slide-up opacity-90">

@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Metadata } from "next";
+import { metadataFlorida, metadataGlobal } from "./metadata";
+import { headers } from "next/headers"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,24 +14,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ariel Figueroa | Senior Front-End Engineer & React Developer",
-  description: 
-    "Experienced Senior Front-End Engineer specializing in React, TypeScript, and modern web development. Explore my projects, resume, and blog for insights on UI/UX, performance optimization, and scalable web applications.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const requestHeaders = headers(); 
+  const metadataType = (await requestHeaders).get("x-metadata") || "global"; 
+  return metadataType === "florida" ? metadataFlorida : metadataGlobal;
+}
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scrollable">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased scrollable`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased scrollable`}>
         {children}
       </body>
     </html>
