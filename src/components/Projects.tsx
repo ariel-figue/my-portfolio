@@ -131,7 +131,7 @@ const ProjectCard = ({
           alt={`${title} Screenshot`}
           width={width}
           height={height}
-          className="rounded-lg mb-4 cursor-pointer"
+          className="rounded-lg mb-4 cursor-pointer hover:opacity-80"
           onClick={() => setSelectedImage({ src: image, width, height })}
         />
       ) : (
