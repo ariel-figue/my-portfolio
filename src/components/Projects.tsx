@@ -46,18 +46,19 @@ const projects: Project[] = [
     image: "/fishly-logo.png",
     description: (
       <>
+        I started development of Fishly in <b>late February 2025</b>, so it is
+        in its early stages, with more features being added regularly.
+        <br />
+        <br />
         <b>Fishly</b> is a fishing companion app providing{" "}
         <b>
           real-time fishing insights, catch logging, and location-based
           recommendations.
         </b>{" "}
-        It features an interactive <b>map</b> for pinning fishing spots,
-        tracking catches, and analyzing trends over time. Built with{" "}
-        <b>Next.js, React, Tailwind CSS, and Neon DB</b>, it leverages{" "}
+        When complete, it will feature an interactive <b>map</b> for pinning
+        fishing spots, tracking catches, and analyzing trends over time. Built
+        with <b>Next.js, React, Tailwind CSS, and Neon DB</b>, it leverages{" "}
         <b>Next.js API routes</b> for seamless data handling.
-        <br />
-        <br />I started this project in <b>late February 2025</b>, and it is
-        still under early development, with more features being added regularly.
       </>
     ),
     link: "https://fishly-af.vercel.app",
