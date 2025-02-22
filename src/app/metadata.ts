@@ -33,7 +33,7 @@ export const metadataGlobal: Metadata = {
     "Ariel",
     "Figueroa",
     "Ariel Figueroa Portfolio",
-    "Ariel Figueroa Webstie",
+    "Ariel Figueroa Website",
     "Ariel Figueroa Engineer",
   ],
   robots: "index, follow",
@@ -60,6 +60,16 @@ export const metadataGlobal: Metadata = {
       "Senior Front-End Engineer specializing in React, TypeScript, and Next.js. Explore my projects and blog for insights on scalable web development.",
     images: ["https://ariel-figueroa.com/social-preview.jpg"],
   },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+    other: [
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 };
 
 export const metadataFlorida: Metadata = {
@@ -90,7 +100,7 @@ export const metadataFlorida: Metadata = {
     "Ariel",
     "Figueroa",
     "Ariel Figueroa Portfolio",
-    "Ariel Figueroa Webstie",
+    "Ariel Figueroa Website",
     "Ariel Figueroa Engineer",
   ],
   robots: "index, follow",
@@ -118,4 +128,14 @@ export const metadataFlorida: Metadata = {
       "Senior Front-End Engineer based in Florida, specializing in React, TypeScript, and Next.js. Explore my projects and blog for insights on scalable web development.",
     images: ["https://ariel-figueroa.com/social-preview.jpg"],
   },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+    other: [
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 };
