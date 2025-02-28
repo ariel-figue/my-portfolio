@@ -31,13 +31,16 @@ const ImageViewer = ({
     if (isOpen) {
       document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     };
   }, [isOpen, onClose]);
 
@@ -82,3 +85,4 @@ const ImageViewer = ({
 };
 
 export default ImageViewer;
+
