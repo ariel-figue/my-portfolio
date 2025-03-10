@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ContactContent } from "@/components/Contact";
 import { ExperienceContent } from "@/components/Experience";
 import { ProjectsContent } from "@/components/Projects";
@@ -27,7 +27,7 @@ export default function AboutMe() {
         <Image
           src="/my-picture.webp"
           alt="Ariel Figueroa Picture"
-          className="w-full h-full object-cover"
+          className="object-cover"
           priority
           fill
         />

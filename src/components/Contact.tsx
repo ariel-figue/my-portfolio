@@ -24,8 +24,6 @@ export const ContactContent = () => (
             width={45}
             height={45}
             className="inline mr-2"
-            priority={false}
-            loading="lazy"
           />
         </a>
         <a
@@ -40,8 +38,6 @@ export const ContactContent = () => (
             width={50}
             height={50}
             className="inline mr-2"
-            priority={false}
-            loading="lazy"
           />
         </a>
       </div>
