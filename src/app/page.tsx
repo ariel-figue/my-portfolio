@@ -25,7 +25,7 @@ export default function AboutMe() {
     <div className="scroll-smooth font-[family-name:var(--font-geist-sans)] min-h-screen">
       <div className="relative top-0 left-0 w-full h-screen">
         <Image
-          src="/my-picture.jpg"
+          src="/my-picture.webp"
           alt="Ariel Figueroa Picture"
           className="w-full h-full object-cover"
           priority

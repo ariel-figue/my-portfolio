@@ -40,6 +40,7 @@ export const EducationContent = () => {
                 height={edu.height}
                 className="object-contain mr-4"
                 priority={false}
+                loading="lazy"
               />
               <div>
                 <h3 className="text-lg font-bold">{edu.school}</h3>
