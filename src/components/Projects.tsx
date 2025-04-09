@@ -223,7 +223,7 @@ const ProjectCard = ({
       {link && storeImage && (
         <a
           href={typeof storeImage === "string" ? link : storeImage.link}
-          className={`${link ? "cursor-pointer hover:opacity-80" : ""}`}
+          className={`mt-2 ${link ? "cursor-pointer hover:opacity-80" : ""}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -333,7 +333,7 @@ export const ProjectsContent = () => {
         {/* Mobile Modal */}
         {selectedProject && isMobile() && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg max-w-[90%] max-h-[90%] overflow-y-auto relative">
+            <div className="bg-white rounded-lg max-w-[90%] max-h-[90%] overflow-y-auto relative">
               <button
                 className="absolute top-2 right-4 text-2xl font-bold text-gray-700"
                 onClick={() => {
