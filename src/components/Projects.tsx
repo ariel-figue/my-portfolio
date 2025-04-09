@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import ImageViewer from "./ImageViewer";
 import FadeInSection from "./FadeInSection";
 
+// Interfaces remain unchanged
 interface StoreImage {
   image: string;
   link?: string;
@@ -23,6 +24,7 @@ interface Project {
   height?: number;
 }
 
+// Projects array remains unchanged
 const projects: Project[] = [
   {
     title: "Lucky Lotto",
@@ -72,6 +74,35 @@ const projects: Project[] = [
     height: 175,
   },
   {
+    title: "FICUS LLC",
+    image:
+      "https://api.screenshotone.com/take?url=https://ficus-llc.vercel.app&access_key=0PYVnBERLWhW2A",
+    description: (
+      <>
+        <b>FICUS LLC</b> is an ecological consulting firm founded by my twin
+        brother,
+        <b> Dr. Adrian Figueroa</b>. I created the website to showcase
+        FICUS&apos;s services, mission, and expertise in{" "}
+        <b>
+          conservation biology, ecological data analysis, GIS mapping, and
+          science communication
+        </b>
+        .
+        <br />
+        <br />
+        The site highlights Adrian’s extensive experience with federal, state,
+        and local agencies, as well as academic and nonprofit partners,
+        supporting conservation initiatives across{" "}
+        <b>South Florida and beyond</b>. Built with <b>Next.js and React</b>,
+        the website provides a clean, accessible, and professional online
+        presence.
+      </>
+    ),
+    link: "https://ficus-llc.vercel.app",
+    width: 225,
+    height: 225,
+  },
+  {
     title: "HBO Max AVOD/SVOD",
     image: "/hbomax-avod-svod.png",
     description: (
@@ -119,64 +150,89 @@ const ProjectCard = ({
   link,
   storeImage,
   useImageViewer,
-  width = 150, // Default width
-  height = 150, // Default height
+  width = 150,
+  height = 150,
   setSelectedImage,
+  onClick,
+  isModal = false,
 }: Project & {
   setSelectedImage: (
     image: { src: string; width: number; height: number } | null
   ) => void;
+  onClick?: () => void;
+  isModal?: boolean;
 }) => {
   return (
-    <div className="rounded-2xl shadow-md p-6 border border-gray-200 flex flex-col items-center text-center bg-white transition-all transform hover:scale-105 max-w-[350px] h-[500px]">
-      {/* Image */}
+    <div
+      className={`rounded-2xl p-6 flex flex-col items-center text-center bg-white max-w-[350px] h-[500px] ${
+        !isModal ? "shadow-md border border-gray-200 transition-all transform hover:scale-105" : ""
+      }`}
+      onClick={onClick}
+    >
       {useImageViewer ? (
         <Image
           src={image}
-          alt={`${title} Screenshot`}
+          alt={`${title} screenshot`}
           width={width}
           height={height}
           className="rounded-lg mb-4 cursor-pointer hover:opacity-80"
-          onClick={() => setSelectedImage({ src: image, width, height })}
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedImage({ src: image, width, height });
+          }}
         />
       ) : (
         <Image
           src={image}
-          alt={`${title} Screenshot`}
+          alt={`${title} screenshot`}
           width={width}
           height={height}
-          className={`rounded-lg mb-4 ${
-            link ? "cursor-pointer hover:opacity-80" : ""
-          }`}
-          onClick={link ? () => window.open(link, "-blank") : undefined}
+          className={`rounded-lg mb-4 ${link ? "cursor-pointer hover:opacity-80" : ""}`}
+          onClick={link ? () => window.open(link, "_blank") : undefined}
         />
       )}
 
-      {/* Title */}
-      <h3 className="text-xl font-semibold text-[#2c3e50]">{title}</h3>
+      <h3 className="text-xl font-semibold text-[#2c3e50] flex items-center justify-space-between">
+        {title.toLowerCase() === "ficus llc" ? (
+          <>
+            {title}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://ficus-llc.vercel.app"
+              className="pointer hover:opacity-80 mr-1"
+            >
+              <Image
+                src="https://ficus-llc.vercel.app/images/logo-w-text.png"
+                alt="FICUS LLC Logo"
+                width={30}
+                height={30}
+                className="rounded-full ml-4"
+              />
+            </a>
+          </>
+        ) : (
+          title
+        )}
+      </h3>
 
-      {/* Description Area */}
       <div className="description-area flex-1 w-full mt-4 text-gray-700 px-1 text-sm text-justify h-[80px] scrollable">
         {description}
       </div>
 
-      {/* Store Link (if applicable) */}
       {link && storeImage && (
         <a
           href={typeof storeImage === "string" ? link : storeImage.link}
           className={`${link ? "cursor-pointer hover:opacity-80" : ""}`}
-          target="-blank"
+          target="_blank"
           rel="noopener noreferrer"
         >
           <Image
             src={typeof storeImage === "string" ? storeImage : storeImage.image}
             alt="Store Link"
-            width={
-              typeof storeImage === "string" ? 150 : storeImage.width ?? 150
-            }
-            height={
-              typeof storeImage === "string" ? 150 : storeImage.height ?? 150
-            }
+            width={typeof storeImage === "string" ? 150 : storeImage.width ?? 150}
+            height={typeof storeImage === "string" ? 150 : storeImage.height ?? 150}
+            className={`${title.toLowerCase() === "ficus llc" ? "rounded-full " : ""}`}
           />
         </a>
       )}
@@ -190,25 +246,79 @@ export const ProjectsContent = () => {
     width: number;
     height: number;
   } | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Detect if on mobile
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const isMobile = () => window.innerWidth <= 768;
+
+  const handleCardClick = (project: Project) => {
+    if (isMobile()) {
+      setIsPaused(true);
+      setSelectedProject(project);
+    }
+  };
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject && isMobile()) {
+      // Get the current scroll position
+      const scrollY = window.scrollY;
+
+      // Prevent scrolling on the body
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
+      // Re-enable scrolling and restore position on cleanup
+      return () => {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
+    } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    }
+  }, [selectedProject, isMobile]);
+
+  // Calculate the total width of one set of projects (in pixels)
+  const projectWidth = 350 + 24; // max-w-[350px] + space-x-6 (24px in Tailwind)
+  const totalWidth = projects.length * projectWidth;
 
   return (
     <FadeInSection>
       <h2 className="text-3xl font-bold text-left text-[#2c3e50] mb-2">
         Projects
       </h2>
-      <div className="relative w-full py-6">
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 place-items-center">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              {...project}
-              setSelectedImage={setSelectedImage}
-            />
+      <div className="relative w-full py-6 overflow-x-hidden">
+        {/* Carousel Container */}
+        <div
+          ref={carouselRef}
+          className="flex space-x-6 animate-scroll"
+          style={{
+            animationPlayState: isPaused ? "paused" : "running",
+            width: `${totalWidth * 3}px`, // Triplicate width for seamless looping
+          }}
+          onMouseEnter={() => !isMobile() && setIsPaused(true)}
+          onMouseLeave={() => !isMobile() && setIsPaused(false)}
+        >
+          {[...projects, ...projects, ...projects].map((project, index) => (
+            <div key={index} className="flex-shrink-0">
+              <ProjectCard
+                {...project}
+                setSelectedImage={setSelectedImage}
+                onClick={() => handleCardClick(project)}
+              />
+            </div>
           ))}
         </div>
 
-        {/* Image Viewer Modal */}
+        {/* Image Viewer Modal (Desktop) */}
         {selectedImage && (
           <ImageViewer
             src={selectedImage.src}
@@ -219,7 +329,60 @@ export const ProjectsContent = () => {
             height={1200}
           />
         )}
+
+        {/* Mobile Modal */}
+        {selectedProject && isMobile() && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg max-w-[90%] max-h-[90%] overflow-y-auto relative">
+              <button
+                className="absolute top-2 right-4 text-2xl font-bold text-gray-700"
+                onClick={() => {
+                  setSelectedProject(null);
+                  setIsPaused(false);
+                }}
+              >
+                X
+              </button>
+              <ProjectCard
+                {...selectedProject}
+                setSelectedImage={setSelectedImage}
+                isModal={true}
+              />
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* Inline CSS for animation and scrollbar hiding */}
+      <style jsx>{`
+        .animate-scroll {
+          display: flex;
+          animation: scroll 30s linear infinite; /* Adjust duration for speed */
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-${totalWidth}px); /* Move by one set of projects */
+          }
+        }
+
+        /* Hide scrollbar */
+        .overflow-x-hidden {
+          overflow-x: hidden;
+        }
+
+        .animate-scroll::-webkit-scrollbar {
+          display: none;
+        }
+
+        .animate-scroll {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+      `}</style>
     </FadeInSection>
   );
 };
