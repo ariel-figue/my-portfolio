@@ -20,11 +20,11 @@ const sections = [
   { id: "contact", content: <ContactContent /> },
 ];
 
-export default function AboutMe() {
-  const inlineStyles = {
-    scrollBehavior: "smooth",
-  } as const;
+const inlineStyles = {
+  scrollBehavior: "smooth",
+} as const;
 
+export default function AboutMe() {
   return (
     <div
       style={inlineStyles}
