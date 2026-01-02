@@ -13,11 +13,11 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 
 const sections = [
-  { id: "home", sectionId: "home", content: <AboutMeContent /> },
-  { id: "experience", sectionId: "experience", content: <ExperienceContent /> },
-  { id: "projects", sectionId: "projects", content: <ProjectsContent /> },
-  { id: "education", sectionId: "education", content: <EducationContent /> },
-  { id: "contact", sectionId: "contact", content: <ContactContent /> },
+  { id: "home", content: <AboutMeContent /> },
+  { id: "experience", content: <ExperienceContent /> },
+  { id: "projects", content: <ProjectsContent /> },
+  { id: "education", content: <EducationContent /> },
+  { id: "contact", content: <ContactContent /> },
 ];
 
 export default function AboutMe() {
@@ -45,8 +45,8 @@ export default function AboutMe() {
       </div>
 
       <main className="container mx-auto py-12 px-6">
-        {sections.map(({ id, content }, index) => (
-          <section key={index} id={id} className="mb-12">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
             {content}
           </section>
         ))}
