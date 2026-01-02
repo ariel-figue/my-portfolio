@@ -37,8 +37,8 @@ export default function AboutMe() {
         </div>
       </div>
       <main className="container mx-auto py-12 px-6">
-        {sections.map(({ id, content }) => (
-          <section key={id} id={id} className="mb-12">
+        {sections.map(({ id, content }, index) => (
+          <section key={index} id={id} className="mb-12">
             {content}
           </section>
         ))}
