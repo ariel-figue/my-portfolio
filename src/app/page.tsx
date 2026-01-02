@@ -21,11 +21,9 @@ const sections = [
 ];
 
 export default function AboutMe() {
-  console.log("QuietLint test");
-
   const inlineStyles = {
     scrollBehavior: "smooth",
-  };
+  } as const;
 
   return (
     <div
@@ -46,11 +44,18 @@ export default function AboutMe() {
         </div>
       </div>
 
-      <Image src="/my-picture.webp" className="object-cover" priority fill />
+      <div className="relative w-full h-64">
+        <Image
+          src="/my-picture.webp"
+          alt="Ariel Figueroa Picture"
+          className="object-cover"
+          fill
+        />
+      </div>
 
       <main className="container mx-auto py-12 px-6">
-        {sections.map(({ id, content }, index) => (
-          <section key={index} id={id} className="mb-12">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
             {content}
           </section>
         ))}
