@@ -21,8 +21,15 @@ const sections = [
 ];
 
 export default function AboutMe() {
+  const inlineStyles = {
+    scrollBehavior: "smooth",
+  };
+
   return (
-    <div className="scroll-smooth font-[family-name:var(--font-geist-sans)] min-h-screen">
+    <div
+      style={inlineStyles}
+      className="font-[family-name:var(--font-geist-sans)] min-h-screen"
+    >
       <div className="relative top-0 left-0 w-full h-screen">
         <Image
           src="/my-picture.webp"
@@ -36,6 +43,7 @@ export default function AboutMe() {
           <Hero />
         </div>
       </div>
+
       <main className="container mx-auto py-12 px-6">
         {sections.map(({ id, content }, index) => (
           <section key={index} id={id} className="mb-12">
@@ -43,6 +51,7 @@ export default function AboutMe() {
           </section>
         ))}
       </main>
+
       <Footer />
       <Analytics />
       <SpeedInsights />
