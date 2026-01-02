@@ -15,7 +15,7 @@ export const AboutMeContent = () => (
         applications.
       </p>
       <p className="mt-4">
-        I&apos;m also a proud Florida International University (FIU) Alumni,
+        Along with the above, I&apos;m also a proud Florida International University (FIU) Alumni,
         Class of 2018. With expertise in React, TypeScript, and modern front-end
         architecture, I craft seamless user experiences that balance
         functionality and aesthetics. Whether it&apos;s optimizing performance,
