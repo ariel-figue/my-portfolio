@@ -13,11 +13,11 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 
 const sections = [
-  { id: "home", title: "About Me", content: <AboutMeContent /> },
-  { id: "experience", title: "Experience", content: <ExperienceContent /> },
-  { id: "projects", title: "Projects", content: <ProjectsContent /> },
-  { id: "education", title: "Education", content: <EducationContent /> },
-  { id: "contact", title: "Contact", content: <ContactContent /> },
+  { id: "home", content: <AboutMeContent /> },
+  { id: "experience", content: <ExperienceContent /> },
+  { id: "projects", content: <ProjectsContent /> },
+  { id: "education", content: <EducationContent /> },
+  { id: "contact", content: <ContactContent /> },
 ];
 
 export default function AboutMe() {
