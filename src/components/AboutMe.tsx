@@ -10,7 +10,7 @@ export const AboutMeContent = () => (
     </h2>
     <div className="max-w-5xl">
       <p>
-        I&apos;m a first-generation Cuban-American and a Senior Front-End
+        I am a first-generation Cuban-American and a Senior Front-End
         Engineer passionate about building intuitive, high-performance web
         applications.
       </p>
