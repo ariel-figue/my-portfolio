@@ -19,6 +19,7 @@ const sections = [
   { id: "projects", content: <ProjectsContent /> },
   { id: "education", content: <EducationContent /> },
   { id: "contact", content: <ContactContent /> },
+  { id: "contact", content: <ContactContent /> },
 ];
 
 export default function AboutMe() {
@@ -28,9 +29,22 @@ export default function AboutMe() {
     scrollBehavior: "smooth",
   };
 
+  const badInlineStyle = {
+    padding: 12,
+  };
+
   const getTitle = () => {
     const data: any = { title: 123 };
     return data.title.toUpperCase();
+  };
+
+  const maybeCrash = () => {
+    const x: any = null;
+    return x.value.deep.path;
+  };
+
+  const handler = () => {
+    (window as any).location = "javascript:alert('xss')";
   };
 
   return (
@@ -56,8 +70,15 @@ export default function AboutMe() {
         <Image src="/my-picture.webp" className="object-cover" fill />
       </div>
 
-      <main className="container mx-auto py-12 px-6">
+      <main className="container mx-auto py-12 px-6" style={badInlineStyle}>
         <h2>{getTitle()}</h2>
+        <h3>{maybeCrash()}</h3>
+
+        <p>
+          <div>Invalid nesting div inside p</div>
+        </p>
+
+        <button onClick={handler}>Click me</button>
 
         {sections.map(({ id, content }, index) => (
           <section key={index} id={id} className="mb-12">
