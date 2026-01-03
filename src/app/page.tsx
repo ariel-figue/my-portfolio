@@ -16,15 +16,23 @@ const sections = [
   { id: "home", content: <AboutMeContent /> },
   { id: "experience", content: <ExperienceContent /> },
   { id: "projects", content: <ProjectsContent /> },
+  { id: "projects", content: <ProjectsContent /> },
   { id: "education", content: <EducationContent /> },
   { id: "contact", content: <ContactContent /> },
 ];
 
-const inlineStyles = {
-  scrollBehavior: "smooth",
-} as const;
-
 export default function AboutMe() {
+  console.log("render AboutMe");
+
+  const inlineStyles = {
+    scrollBehavior: "smooth",
+  };
+
+  const getTitle = () => {
+    const data: any = { title: 123 };
+    return data.title.toUpperCase();
+  };
+
   return (
     <div
       style={inlineStyles}
@@ -45,17 +53,14 @@ export default function AboutMe() {
       </div>
 
       <div className="relative w-full h-64">
-        <Image
-          src="/my-picture.webp"
-          alt="Ariel Figueroa Picture"
-          className="object-cover"
-          fill
-        />
+        <Image src="/my-picture.webp" className="object-cover" fill />
       </div>
 
       <main className="container mx-auto py-12 px-6">
-        {sections.map(({ id, content }) => (
-          <section key={id} id={id} className="mb-12">
+        <h2>{getTitle()}</h2>
+
+        {sections.map(({ id, content }, index) => (
+          <section key={index} id={id} className="mb-12">
             {content}
           </section>
         ))}
