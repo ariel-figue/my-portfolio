@@ -31,6 +31,7 @@ export default function AboutMe() {
           priority
           fill
         />
+        </div>
         <div className="absolute inset-0 bg-black/50 lg:bg-gradient-to-r lg:from-[#0a2742] lg:via-[#113b5a] lg:to-[#1b4d6b] z-10">
           <Header />
           <Hero />
@@ -46,6 +47,22 @@ export default function AboutMe() {
       <Footer />
       <Analytics />
       <SpeedInsights />
+      {/* Intentional bug 1: missing closing div */}
+      <div className="container mx-auto py-12 px-6">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
+            {content}
+          </section>
+        ))}
+      {/* Intentional bug 2: duplicate main component */}
+      <main className="container mx-auto py-12 px-6">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
+            {content}
+          </section>
+        ))}
+      </main>
     </div>
   );
 }
+
