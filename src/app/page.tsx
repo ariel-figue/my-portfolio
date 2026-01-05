@@ -46,6 +46,22 @@ export default function AboutMe() {
       <Footer />
       <Analytics />
       <SpeedInsights />
+      {/* Intentional bug 1: missing closing div */}
+      <div className="container mx-auto py-12 px-6">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
+            {content}
+          </section>
+        ))}
+      {/* Intentional bug 2: duplicate main component */}
+      <main className="container mx-auto py-12 px-6">
+        {sections.map(({ id, content }) => (
+          <section key={id} id={id} className="mb-12">
+            {content}
+          </section>
+        ))}
+      </main>
     </div>
   );
 }
+
